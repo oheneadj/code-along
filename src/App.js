@@ -1,22 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
-import writers from './writers'
+// import writers from './writers.json'
+import { ProfileCard } from './ProfileCard';
+import {useEffect, useState } from "react";
+// import {useState} from "react";
 
 function App() {
+  const [ writers, setWriters] = useState([]);
+
+  useEffect(() => {
+    const getWriters = async () => { 
+      const response = await fetch("/writers.json");
+      const data = await response.json();
+      setWriters(data);
+    };
+    getWriters();
+  }, [])
+
   return (
     <div>
       <h1>Writer Profiles</h1>
       <div className="container">
         {writers.map((writer) => (
-
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
-            </div>
-       </div>  
+        <ProfileCard writer={writer} />
         ))}
       </div>  
     </div>
