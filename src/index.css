@@ -1,16 +1,15 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-body{
+body {
   background-color: #ffdeca;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-h1{
+h1 {
   text-align: center;
-  margin:20px;
+  margin: 20px;
   color: #2c1203;
   text-transform: uppercase;
   text-decoration: underline;
@@ -28,24 +27,15 @@ h1{
   flex-direction: column;
   justify-content: space-between;
   margin: 20px auto;
+  max-width: 300px;
   background: coral;
   border-radius: 2px;
   box-shadow: 3px 2px 3px silver;
   transition: all 0.3s ease-in-out;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-}
-
-.textGroup {
-  padding: 10px 0;
-  text-align: center;
-  color: white;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.01);
   box-shadow: 5px 5px 10px whitesmoke;
 }
 
@@ -54,7 +44,51 @@ h1{
 }
 
 .bioWrap {
-color: whitesmoke;
-margin: 15px;
-text-align: justify;
+  color: whitesmoke;
+  margin: 15px;
+  text-align: justify;
+}
+
+.textGroup {
+  padding: 10px 0;
+  text-align: center;
+  color: white;
+}
+
+.infoText {
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.action {
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actionBtn {
+  width: 90%;
+  margin: auto;
+  color: #2c1203;
+  font-size: 18px;
+  padding: 5px 0;
+  margin: 5px 0;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.actionBtn:hover {
+  background-color: #ffdeca;
+}
+
+.actionBtn:active {
+  transform: scale(0.987);
 }
