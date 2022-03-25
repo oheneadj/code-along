@@ -1,24 +1,67 @@
 import logo from './logo.svg';
 import './App.css';
-import writers from './writers'
+// import writers from './writers.json'
+import  ProfileCard from './ProfileCard';
+import {useEffect, useState } from "react";
+// import {useState} from "react";
 
 function App() {
+  const [ data, setData] = useState({
+    writers:[],
+    loading:false,
+  });
+
+
+
+  const handleClick = () => {
+    setData(prevData => ({
+      ...prevData,
+      loading:true,
+    }));
+    
+    setTimeout(() => {
+      const getWriters = async () => { 
+        const response = await fetch("/writers.json");
+        const data = await response.json();
+        setData({
+          writers:data,
+        loading:false,
+      });
+    };
+    getWriters();
+  }, 2000)
+};
+
+  if (data.loading){
+    return(
+      <div>
+        <h1>Writer Profiles</h1>
+        <div className="container">
+          <div className="card action">
+            <p className="infoText">Loading...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h1>Writer Profiles</h1>
       <div className="container">
-        {writers.map((writer) => (
-
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
-            </div>
-       </div>  
-        ))}
-      </div>  
+        {data.writers.length === 0 ? (
+          <div className="card action">
+            <p className="infoText"> Oops... no writer profile was found</p>
+            <button className="actionBtn" onClick={handleClick}>
+              Get Writers
+            </button>
+          </div>
+        ):(
+          data.writers.map((writer) => (
+            <ProfileCard key={writer.id} writer={writer} />
+          ))
+        )}
+      </div>
     </div>
   );
 }
