@@ -1,24 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
-import writers from './writers'
+// import writers from './writers.json'
+import  ProfileCard from './ProfileCard';
+import {useEffect, useState } from "react";
+import ProfileForm from './components/ProfileForm';
+// import {useState} from "react";
 
 function App() {
+const [allProfile, setAllProfile] = useState([
+  {
+    firstName: "h",
+    lastName: "n",
+    email: "n@n.ocm",
+    phone: "12",
+  }
+]);
+
+const submit = (profile)=> {
+  const arr = allProfile;
+  arr.push(profile);
+  setAllProfile(arr);
+}
+
   return (
     <div>
       <h1>Writer Profiles</h1>
       <div className="container">
-        {writers.map((writer) => (
-
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
-            </div>
-       </div>  
-        ))}
-      </div>  
+        <ProfileForm />
+          {allProfile.map((writer) => (
+            <ProfileCard key={writer.id} writer={writer} />
+          ))}
+      </div>
     </div>
   );
 }

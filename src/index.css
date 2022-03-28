@@ -1,21 +1,3 @@
-*{
-  margin: 0;
-  padding: 0;
-}
-
-body{
-  background-color: #ffdeca;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-h1{
-  text-align: center;
-  margin:20px;
-  color: #2c1203;
-  text-transform: uppercase;
-  text-decoration: underline;
-}
-
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -29,6 +11,10 @@ h1{
   background: coral;
   box-shadow: 3px 2px 3px silver;
   transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
 
 .card:hover {
