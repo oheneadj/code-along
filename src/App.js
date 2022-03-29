@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import writers from './writers'
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 function App() {
-  return (
-    <div>
-      <h1>Writer Profiles</h1>
-      <div className="container">
-        {writers.map((writer) => (
+  const [posts, setPosts] = useState([]);
 
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
+  useEffect(() => {
+    (async () => {
+      let response = await Axios({
+        method: "GET",
+        url: "https://jsonplaceholder.typicode.com/posts",
+      });
+
+      setPosts(response.data);
+    })();
+  });
+
+  return (
+    <div className="app">
+      <h1> Daily Posts </h1>
+      <div>
+        <div className="list">
+          {posts.map((post) => (
+            <div key={post.id} className="post">
+              <h3>{post.title}</h3>
+              <p>{post.body}</p>
             </div>
-       </div>  
-        ))}
-      </div>  
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
