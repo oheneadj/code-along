@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-import writers from './writers'
+import useLocalStorage from "./hooks/useLocalStorage";
+import ProfileForm from "./components/ProfileForm";
+import ProfileCard from "./components/ProfileCard";
 
 function App() {
-  return (
-    <div>
-      <h1>Writer Profiles</h1>
-      <div className="container">
-        {writers.map((writer) => (
+  const [profiles, setProfiles] = useLocalStorage("profiles", []);
 
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
-            </div>
-       </div>  
-        ))}
-      </div>  
+  const updateProfiles = (profile) => {
+    let arr = profiles;
+    arr.push(profile);
+    setProfiles([...arr]);
+  };
+
+  return (
+    <div className="app">
+      <h1> Profile Maker </h1>
+      <div>
+        <ProfileForm submit={updateProfiles} />
+        <hr />
+        <div className="list">
+          {profiles.map((person, index) => (
+            <ProfileCard key={index} writer={person} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
