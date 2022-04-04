@@ -36,3 +36,4 @@ function ProfileCard({ writer }) {
 }
 
 export default ProfileCard;
+

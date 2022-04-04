@@ -4,7 +4,7 @@ const useLocalStorage = (name, initialValue) => {
 
     const [key, setValue] =useState(()=>{
 
-        if(typeof window === undefined){
+        if(typeof window === "undefined"){
             return initialValue;
         }
     
@@ -20,7 +20,7 @@ const useLocalStorage = (name, initialValue) => {
     const setLocalStorage = (value) => {
         try {
             setValue(value);
-            if (typeof window !== undefined){
+            if (typeof window !== "undefined"){
                 window.localStorage.setItem(key, JSON.stringify(value));
             }
         } catch (error) {
