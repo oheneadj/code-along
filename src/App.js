@@ -1,26 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import writers from './writers'
+import React from 'react'
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
+import Navbar from "./components/navbar/Navbar"
 
-function App() {
+
+const App = () => {
   return (
-    <div>
-      <h1>Writer Profiles</h1>
-      <div className="container">
-        {writers.map((writer) => (
-
-        <div className="card">
-          <img src={`./img/${writer.avatar}.png`} width="100%" height="300px" alt="" />  
-            <div className="textGroup">
-              <h3>{writer.name}</h3>
-              <p>{writer.email}</p>
-              <p>{writer.phone}</p>
-            </div>
-       </div>  
-        ))}
-      </div>  
-    </div>
-  );
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="blog" element={<Blog/>}/>
+        <Route path="about" element={<About/>}/>
+      </Routes>
+    </BrowserRouter>
+    )
 }
 
-export default App;
+export default App
